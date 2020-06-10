@@ -1,0 +1,47 @@
+version: '3.3'
+services:
+  php:
+    tty: true
+    build:
+      context: ./php
+    container_name: ${PROJECT_NAME}
+    volumes:
+      - .:${PROJECT_PATH}
+    env_file:
+      - ../.env
+
+  nginx:
+    image: nginx
+    container_name: "${PROJECT_NAME}_nginx"
+    ports:
+      - 81:81
+    volumes:
+      - "../:/var/www/project"
+      - "./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf"
+    env_file:
+      - ../.env
+    links:
+      - php
+
+  db:
+    image: postgres
+    container_name: "${PROJECT_NAME}_db"
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_ROOT_PASS}
+    env_file:
+      - ../.env
+
+  adminer:
+    image: adminer
+    container_name: "${PROJECT_NAME}_adminer"
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+    environment:
+      - ADMINER_HOST=db
+      - ADMINER_USER=invit 
+      - ADMINER_PASSWORD=invit
+    env_file:
+      - ../.env
