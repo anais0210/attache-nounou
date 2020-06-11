@@ -69,34 +69,25 @@ composer-install: ## Composer install
 	composer install;
 
 # --------------------------------------------------------------------
-# TEST
+# TEST && QUALITE
 # --------------------------------------------------------------------
-test-behat: ## Behat
-ifdef suite
-	@${RUN_IN_CONTAINER} ./vendor/bin/behat --lang=fr --colors --suite=$(suite)
-else
-ifdef tags
-	@${RUN_IN_CONTAINER} ./vendor/bin/behat --lang=fr --colors --tags=$(tags)
-else
-	@${RUN_IN_CONTAINER} ./vendor/bin/behat --lang=fr --colors
-endif
-endif
+behat: ## Behat
+	./vendor/bin/behat --colors
 
-test-phpunit: ## PHP Unit
-	@${RUN_IN_CONTAINER} ./vendor/bin/simple-phpunit --configuration ./phpunit.xml.dist ${SUBCOMMAND}
+cs: ## PHP Code Style
+	./vendor/bin/phpcs
 
-test-phpcs: ## PHP Code Style
-	@${RUN_IN_CONTAINER} ./vendor/bin/phpcbf ${SUBCOMMAND}
-	@${RUN_IN_CONTAINER} ./vendor/bin/phpcs ${SUBCOMMAND}
+phpcbf: ## PHP Code Beautifier and Fixer
+	./vendor/bin/phpcbf
 
-test-phpcbf: ## PHP Code Beautifier and Fixer
-	@${RUN_IN_CONTAINER} ./vendor/bin/phpcbf ${SUBCOMMAND}
+phpstan: ## PhpStan
+	vendor/bin/phpstan analyse src
 
-test-phpstan: ## PhpStan
-	@${RUN_IN_CONTAINER} ./vendor/bin/phpstan analyse -c tests/phpstan/phpstan.neon
+psalm: ## Psalm
+	 ./vendor/bin/psalm
 
-test-psalm: ## Psalm
-	@${RUN_IN_CONTAINER} ./vendor/bin/psalm
+qualite:cs phpcbf phpstan psalm
+
 # --------------------------------------------------------------------
 # FIXTURES
 # --------------------------------------------------------------------
