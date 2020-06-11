@@ -41,7 +41,7 @@ services:
       - 8080:8080
     environment:
       - ADMINER_HOST=db
-      - ADMINER_USER=invit 
-      - ADMINER_PASSWORD=invit
+      - ADMINER_USER="invite"
+      - ADMINER_PASSWORD="invite"
     env_file:
       - ../.env
