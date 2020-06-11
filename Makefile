@@ -75,10 +75,10 @@ behat: ## Behat
 	./vendor/bin/behat --colors
 
 cs: ## PHP Code Style
-	./vendor/bin/phpcs
+	./vendor/bin/phpcs --standard=PSR2 ./src
 
 phpcbf: ## PHP Code Beautifier and Fixer
-	./vendor/bin/phpcbf
+	./vendor/bin/phpcbf ./src
 
 phpstan: ## PhpStan
 	vendor/bin/phpstan analyse src
@@ -100,29 +100,29 @@ load-fixtures: ## Génère les fixtures
 # --------------------------------------------------------------------
 
 console-doctrine-database-create: ## Création de la base de donnée postgres.
-	 @${RUN_IN_CONTAINER} php ./bin/console doctrine:database:create ${SUBCOMMAND}
+	php ./bin/console doctrine:database:create ${SUBCOMMAND}
 
 console-doctrine-database-drop: ## Drop de la base de donnée postgres.
-	 @${RUN_IN_CONTAINER} php ./bin/console doctrine:database:drop --if-exists --force ${SUBCOMMAND}
+	php ./bin/console doctrine:database:drop --if-exists --force ${SUBCOMMAND}
 
 console-doctrine-schema-update:  ## Drop de la base de donnée postgres.
-	 @${RUN_IN_CONTAINER} php ./bin/console doctrine:schema:update --force ${SUBCOMMAND}
+	php ./bin/console doctrine:schema:update --force ${SUBCOMMAND}
 
 # --------------------------------------------------------------------
 # DOCUMENTATION
 # --------------------------------------------------------------------
 
 generate-swagger-file: ## Génère le fichier swagger
-	@${RUN_IN_CONTAINER} ./vendor/bin/openapi ./src -o ./config/swagger/swagger.yaml --format yaml
+	./vendor/bin/openapi ./src -o ./config/swagger/swagger.yaml --format yaml
 
 # --------------------------------------------------------------------
 # DATABASES
 # --------------------------------------------------------------------
 
 databases-refresh: ## Drop toutes les bases de donnée (postgres).
-	 @${RUN_IN_CONTAINER} php ./bin/console doctrine:database:drop --if-exists --force ${SUBCOMMAND}
-	 @${RUN_IN_CONTAINER} php ./bin/console doctrine:database:create ${SUBCOMMAND}
-	 @${RUN_IN_CONTAINER} php ./bin/console doctrine:schema:update --force ${SUBCOMMAND}
+	php ./bin/console doctrine:database:drop --if-exists --force ${SUBCOMMAND}
+	php ./bin/console doctrine:database:create ${SUBCOMMAND}
+	php ./bin/console doctrine:schema:update --force ${SUBCOMMAND}
 
 # --------------------------------------------------------------------
 # APPLICATION
