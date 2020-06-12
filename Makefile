@@ -86,20 +86,20 @@ phpstan: ## PhpStan
 psalm: ## Psalm
 	 ./vendor/bin/psalm
 
-qualite:cs phpcbf phpstan psalm
+quality:cs phpcbf phpstan psalm
 
 # --------------------------------------------------------------------
 # FIXTURES
 # --------------------------------------------------------------------
 
-load-fixtures: ## Génère les fixtures
+fixtures: ## Génère les fixtures
 	 @${RUN_IN_CONTAINER} php ./bin/console doctrine:database:drop --if-exists --force ${SUBCOMMAND}
 
 # --------------------------------------------------------------------
 # DOCTRINE
 # --------------------------------------------------------------------
 
-console-doctrine-database-create: ## Création de la base de donnée postgres.
+database-create: ## Création de la base de donnée postgres.
 	php ./bin/console doctrine:database:create ${SUBCOMMAND}
 
 console-doctrine-database-drop: ## Drop de la base de donnée postgres.
@@ -112,7 +112,7 @@ console-doctrine-schema-update:  ## Drop de la base de donnée postgres.
 # DOCUMENTATION
 # --------------------------------------------------------------------
 
-generate-swagger-file: ## Génère le fichier swagger
+swagger: ## Génère le fichier swagger
 	./vendor/bin/openapi ./src -o ./config/swagger/swagger.yaml --format yaml
 
 # --------------------------------------------------------------------
