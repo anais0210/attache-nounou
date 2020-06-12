@@ -11,9 +11,12 @@ Cahier de liaison entre les parents et l'ATSEM
 
  ## ❗ Setup Projet ❗
 
-* git clone 
-* make start 
+* git clone https://github.com/anais0210/attache-nounou.git
+* cp .env.dist
+* customize .env
+* make start
 * make database-create
+* make database-update
 * make load-fixtures
  
 ####

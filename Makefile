@@ -93,7 +93,7 @@ quality:cs phpcbf phpstan psalm
 # --------------------------------------------------------------------
 
 fixtures: ## Génère les fixtures
-	 @${RUN_IN_CONTAINER} php ./bin/console doctrine:database:drop --if-exists --force ${SUBCOMMAND}
+	php bin/console doctrine:fixtures:load
 
 # --------------------------------------------------------------------
 # DOCTRINE
@@ -102,10 +102,10 @@ fixtures: ## Génère les fixtures
 database-create: ## Création de la base de donnée postgres.
 	php ./bin/console doctrine:database:create ${SUBCOMMAND}
 
-console-doctrine-database-drop: ## Drop de la base de donnée postgres.
+doctrine-drop: ## Drop de la base de donnée postgres.
 	php ./bin/console doctrine:database:drop --if-exists --force ${SUBCOMMAND}
 
-console-doctrine-schema-update:  ## Drop de la base de donnée postgres.
+database-update:  ## Drop de la base de donnée postgres.
 	php ./bin/console doctrine:schema:update --force ${SUBCOMMAND}
 
 # --------------------------------------------------------------------
@@ -119,7 +119,7 @@ swagger: ## Génère le fichier swagger
 # DATABASES
 # --------------------------------------------------------------------
 
-databases-refresh: ## Drop toutes les bases de donnée (postgres).
+databases-refresh: ## Drop la base de donnée et la recréer(postgres).
 	php ./bin/console doctrine:database:drop --if-exists --force ${SUBCOMMAND}
 	php ./bin/console doctrine:database:create ${SUBCOMMAND}
 	php ./bin/console doctrine:schema:update --force ${SUBCOMMAND}
