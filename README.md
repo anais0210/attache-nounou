@@ -1,37 +1,37 @@
-##📕 ATTACHE-NOUNOU 📕 ##
+# 📕 ATTACHE-NOUNOU 📕
 
 Cahier de liaison entre les parents et l'ATSEM 
 * Docker -- Symfony 5.1 -- PHP 7.3 
 
-### 🚀 Pré-requis 🚀 ###
+## 🚀 Pré-requis 🚀 ##
  * Docker 3.3
  * PHP 7
  * composer
-### ###
+####
 
- ### ❗ Setup Projet ❗ ###
+ ## ❗ Setup Projet ❗
 
 * git clone 
 * make start 
 * make database-create
 * make load-fixtures
  
-### ###
+####
 
- ## 🆒 Test et qualité 🆒 ##
+ ## 🆒 Test et qualité 🆒
  * make quality
   -> PHPCS / PHPCBF / PHPSTAN / PHPPSALM
  * make behat
-## ##
+####
 
- ### 👪 👪 Load Fixtures 👪 👪 ###
+ ## 👪 👪 Load Fixtures 👪 👪
  * make fixtures
-## ##
+####
 
- ### 🐳 Logs Docker 🐳 ###
+ ## 🐳 Logs Docker 🐳
  * make docker-logs
-## ##
+####
 
-## 📚 Générer le Swagger 📚 ###
+## 📚 Générer le Swagger 📚
 * make swagger
-## ##
+####
