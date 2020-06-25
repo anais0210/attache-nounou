@@ -1,0 +1,22 @@
+default:
+    suites:
+        functional:
+            paths: [ "%paths.base%/./test/Behat/BoundedContext/" ]
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - Behatch\Context\JsonContext
+                - Behatch\Context\RestContext
+                - Behatch\Context\BrowserContext
+                - Test\Behat\Context\Context
+    extensions:
+        FriendsOfBehat\SymfonyExtension:
+            bootstrap: test/bootstrap.behat.php
+            kernel:
+                class: App\Kernel
+        Behat\MinkExtension:
+            base_url: localhost #http://attache-nounou_nginx
+            # files_path: 'test/Behat/'
+            sessions:
+                default:
+                    symfony: ~
+        Behatch\Extension: ~

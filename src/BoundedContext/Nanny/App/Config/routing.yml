@@ -1,0 +1,10 @@
+nany_show:
+  path: /attache-nounou/nanny/show/profil
+  controller:  App\BoundedContext\Nanny\UI\Controller\NannyShowProfilController::indexAction
+  methods: ['GET']
+
+nany_create:
+  path: /attache-nounou/nanny/create
+  controller:  App\BoundedContext\Nanny\UI\Controller\NannyCreateController::indexAction
+  methods: ['POST']
+

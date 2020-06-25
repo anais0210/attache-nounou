@@ -1,0 +1,52 @@
+App\BoundedContext\Nanny\App\Command\NannyCreateCommand:
+    properties:
+      lastName:
+        - NotNull: ~
+        - Length:
+            min: 1
+            max: 100
+            minMessage: 'Your text must be at least {{ limit }} characters long'
+            maxMessage: 'Your text cannot be longer than {{ limit }} characters'
+      firstName:
+        - Length:
+            min: 1
+            max: 100
+            minMessage: 'Your text must be at least {{ limit }} characters long'
+            maxMessage: 'Your text cannot be longer than {{ limit }} characters'
+        - NotNull: ~
+      birthday:
+        - Date: ~
+        - IsNull: ~
+      adresse:
+        - Length:
+            min: 1
+            max: 250
+            minMessage: 'Your text must be at least {{ limit }} characters long'
+            maxMessage: 'Your text cannot be longer than {{ limit }} characters'
+            allowEmptyString: false
+        - IsNull: ~
+      postalCode:
+        - Regex:
+            pattern: '/^[0-9]{5}/i'
+        - IsNull: ~
+      city:
+        - Length:
+            min: 1
+            max: 100
+            minMessage: 'Your text must be at least {{ limit }} characters long'
+            maxMessage: 'Your text cannot be longer than {{ limit }} characters'
+        - IsNull: ~
+      phoneNumber:
+        - Regex:
+            pattern: '/^[0-9]{10}/i'
+        - IsNull: ~
+      email:
+        - Email:
+            message: The email "{{ value }}" is not a valid email.
+        - NotNull: ~
+        - Unique:
+            message: The email already exists
+      password:
+        - NotNull: ~
+      dateRecording:
+        - Date: ~

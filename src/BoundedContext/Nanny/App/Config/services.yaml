@@ -1,0 +1,26 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+##Repository and Repository Interface
+  App\BoundedContext\Nanny\Infra\Repository\:
+    resource: '../../Infra/Repository'
+
+  App\BoundedContext\Nanny\Domain\RepositoryInterface\:
+    resource: '../../Domain/RepositoryInterface'
+
+## Controller
+  App\BoundedContext\Nanny\UI\Controller\:
+    resource: '../../UI/Controller'
+    tags: ['controller.service_arguments']
+
+## Query Handler
+  App\BoundedContext\Nanny\App\QueryHandler\:
+    resource: '../QueryHandler'
+    tags: [messenger.message_handler]
+
+## Command Handler
+  App\BoundedContext\Nanny\App\CommandHandler\:
+    resource: '../CommandHandler'
+    tags: [messenger.message_handler]

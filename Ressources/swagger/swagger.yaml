@@ -1,0 +1,94 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Attache-Nounou",
+        "description": "",
+        "termsOfService": "terms",
+        "contact": {
+            "name": "a.sparesotto@icloud.com"
+        },
+        "license": {
+            "name": "proprietary"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:80",
+    "basePath": "/attache-nounou/nanny/create",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/attache-nounou/nanny/create": {
+            "post": {
+                "tags": [
+                    "Nanny"
+                ],
+                "summary": "Create account nanny",
+                "description": "",
+                "operationId": "create_nanny",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "creation of the nanny account",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "lastname": {
+                                    "type": "string",
+                                    "default": "Sparesotto"
+                                },
+                                "firstname": {
+                                    "type": "string",
+                                    "default": "Anais"
+                                },
+                                "birthday": {
+                                    "type": "string",
+                                    "default": "1991-04-25"
+                                },
+                                "phoneNumber": {
+                                    "type": "string",
+                                    "default": "0671259957"
+                                },
+                                "adresse": {
+                                    "type": "string",
+                                    "default": "10 rue emile Combes"
+                                },
+                                "postalCode": {
+                                    "type": "string",
+                                    "default": "83149"
+                                },
+                                "city": {
+                                    "type": "string",
+                                    "default": "Bras"
+                                },
+                                "function": {
+                                    "type": "string",
+                                    "default": "Assmat"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "default": "a.sparesotto@icloud.com"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "default": "1234"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {}
+}

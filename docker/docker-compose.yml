@@ -6,20 +6,25 @@ services:
       context: ./php
     container_name: ${PROJECT_NAME}
     volumes:
-      - .:${PROJECT_PATH}
+      - ../:${PROJECT_PATH}
     env_file:
       - ../.env
+    ports:
+      - "9000:9000"
 
   nginx:
     image: nginx
     container_name: "${PROJECT_NAME}_nginx"
     ports:
-      - 81:81
+      - "80:80"
+    working_dir: ${PROJECT_PATH}
     volumes:
-      - "../:/var/www/project"
+      - "../:${PROJECT_PATH}"
       - "./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf"
     env_file:
       - ../.env
+    links:
+      - php
 
   db:
     image: postgres

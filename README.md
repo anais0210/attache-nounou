@@ -1,11 +1,11 @@
 # 📕 ATTACHE-NOUNOU 📕
 
 Cahier de liaison entre les parents et l'ATSEM 
-* Docker -- Symfony 5.1 -- PHP 7.3 
+* Docker -- Symfony 5.1 -- PHP 7.4 
 
 ## 🚀 Pré-requis 🚀 ##
  * Docker 3.3
- * PHP 7
+ * PHP 7.4
  * composer
 ####
 

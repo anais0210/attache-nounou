@@ -1,3 +1,5 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+route_nanny:
+  resource: '../src/BoundedContext/Nanny/App/Config/routing.yml'
+#
+#route_family:
+#  resource: 'BoundedContext/Family/App/Routing/routing.yml'

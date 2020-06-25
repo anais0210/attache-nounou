@@ -28,11 +28,7 @@ docker-logs:
 	docker-compose -f docker/docker-compose.yml logs -f ${SUBCOMMAND}
 
 docker-start: ## Demarre les containers du projet
-ifndef ARCHI
 	docker-compose -f docker/docker-compose.yml up --build -d
-else
-	docker-compose -f docker/docker-compose.yml up --build -d
-endif
 
 docker-stop: ## Stop les containers du projet
 	 docker-compose -f docker/docker-compose.yml stop
@@ -58,62 +54,63 @@ docker-hard-reset: ## !!!! Supprime tout container, volume, image, ...
 # --------------------------------------------------------------------
 
 symfony-clear-cache: ## Symfony clear cache
-	 @${RUN_IN_CONTAINER} php ./bin/console cache:clear --no-warmup
-	 @${RUN_IN_CONTAINER} php ./bin/console cache:clear --no-warmup -e test
+	 @${RUN_IN_CONTAINER} attache-nounou bin/console cache:clear --no-warmup
+	 @${RUN_IN_CONTAINER} attache-nounou bin/console cache:clear --no-warmup -e test
 
 # --------------------------------------------------------------------
 # COMPOSER
 # --------------------------------------------------------------------
 
 composer-install: ## Composer install
-	composer install;
+	 @${RUN_IN_CONTAINER} attache-nounou composer install
 
 # --------------------------------------------------------------------
 # TEST && QUALITE
 # --------------------------------------------------------------------
 behat: ## Behat
-	./vendor/bin/behat --colors
+	@${RUN_IN_CONTAINER} attache-nounou  vendor/bin/behat --colors
 
 cs: ## PHP Code Style
-	./vendor/bin/phpcs --standard=PSR2 ./src
+	@${RUN_IN_CONTAINER} attache-nounou vendor/bin/phpcs --standard=PSR2 ./src
 
 phpcbf: ## PHP Code Beautifier and Fixer
-	./vendor/bin/phpcbf ./src
+	@${RUN_IN_CONTAINER} attache-nounou vendor/bin/phpcbf ./src
 
 phpstan: ## PhpStan
-	vendor/bin/phpstan analyse src
+	@${RUN_IN_CONTAINER} attache-nounou  vendor/bin/phpstan analyse -l 6 src --memory-limit=4000M
 
 psalm: ## Psalm
-	 ./vendor/bin/psalm
-
-quality:cs phpcbf phpstan psalm
+	 @${RUN_IN_CONTAINER} attache-nounou vendor/bin/psalm
 
 # --------------------------------------------------------------------
 # FIXTURES
 # --------------------------------------------------------------------
 
 fixtures: ## Génère les fixtures
-	php bin/console doctrine:fixtures:load
+	@${RUN_IN_CONTAINER} attache-nounou bin/console doctrine:fixtures:load ${SUBCOMMAND}
 
 # --------------------------------------------------------------------
 # DOCTRINE
 # --------------------------------------------------------------------
 
 database-create: ## Création de la base de donnée postgres.
-	php ./bin/console doctrine:database:create ${SUBCOMMAND}
+	@${RUN_IN_CONTAINER} attache-nounou bin/console doctrine:database:create ${SUBCOMMAND}
 
 doctrine-drop: ## Drop de la base de donnée postgres.
-	php ./bin/console doctrine:database:drop --if-exists --force ${SUBCOMMAND}
+	@${RUN_IN_CONTAINER} attache-nounou bin/console doctrine:database:drop --if-exists --force ${SUBCOMMAND}
 
-database-update:  ## Drop de la base de donnée postgres.
-	php ./bin/console doctrine:schema:update --force ${SUBCOMMAND}
+database-update:  ## Mise a jour de la base de donnée postgres.
+	@${RUN_IN_CONTAINER} attache-nounou bin/console doctrine:schema:update --force ${SUBCOMMAND}
+
+database-preview-update:
+	@${RUN_IN_CONTAINER} attache-nounou bin/console doctrine:schema:update --dump-sql ${SUBCOMMAND}
 
 # --------------------------------------------------------------------
 # DOCUMENTATION
 # --------------------------------------------------------------------
 
 swagger: ## Génère le fichier swagger
-	./vendor/bin/openapi ./src -o ./config/swagger/swagger.yaml --format yaml
+	@${RUN_IN_CONTAINER} attache-nounou ./vendor/bin/swagger ./src -o ./Ressources/swagger/swagger.yaml
 
 # --------------------------------------------------------------------
 # DATABASES

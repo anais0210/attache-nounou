@@ -1,7 +1,6 @@
-FROM php:7.3-fpm
+FROM php:7.4-fpm
 
-RUN curl -OL https://github.com/composer/composer/releases/download/1.72/composer.phar && \ 
-mv composer.phar /usr/local/bin/composer && \
-chmod +x /usr/local/bin/composer
-
-WORKDIR /var/www/attache-nounou
+RUN apt-get update && apt-get install -y libpq-dev libzip-dev zip git && docker-php-ext-install pdo pdo_pgsql
+RUN docker-php-ext-configure zip
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+WORKDIR /var/www/project

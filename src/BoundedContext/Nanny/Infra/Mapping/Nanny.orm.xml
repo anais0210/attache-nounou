@@ -1,0 +1,22 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:doctrine="http://symfony.com/schema/dic/doctrine"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <entity name="App\BoundedContext\Nanny\Domain\Model\Nanny" table="nanny">
+        <id name="uuid" type="string" column="user_id" unique="true">
+            <generator strategy="NONE" />
+        </id>
+        <field name="lastName" type="string" length="50" nullable="false"/>
+        <field name="firstName" type="string" length="50" nullable="false" />
+        <field name="birthday" type="date" nullable="true"/>
+        <field name="adresse" type="string" length="200" nullable="true"/>
+        <field name="postalCode" type="string" length="6" nullable="true"/>
+        <field name="city" type="string" length="70" nullable="true"/>
+        <field name="function" type="string" length="50" nullable="true"/>
+        <field name="email" type="string" length="200" unique="true" nullable="false"/>
+        <field name="password" type="string" length="250" nullable="false"/>
+        <field name="dateRecording" type="date" nullable="true"/>
+    </entity>
+</container>
