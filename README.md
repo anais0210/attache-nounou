@@ -14,6 +14,9 @@ Cahier de liaison entre les parents et l'ATSEM
 * git clone https://github.com/anais0210/attache-nounou.git
 * cp .env.dist
 * customize .env
+* docker exec -it attache-nounou bash
+* composer install
+* 'sortir du bash'
 * make start
 * make database-create
 * make database-update
@@ -24,7 +27,6 @@ Cahier de liaison entre les parents et l'ATSEM
  ## 🆒 Test et qualité 🆒
  * make quality
   -> PHPCS / PHPCBF / PHPSTAN / PHPPSALM
- * make behat
 ####
 
  ## 👪 👪 Load Fixtures 👪 👪
