@@ -6,76 +6,32 @@ use Swagger\Annotations as SWG;
 use DateTime;
 
 /**
- * @SWG\Post(path="/attache-nounou/nanny/create",
- *   tags={"Nanny"},
- *   summary="Create account nanny",
- *   description="",
- *   operationId="create_nanny",
- *   produces={"application/json"},
- * @SWG\Parameter(
- *     name="body",
- *     in="body",
- *     description="creation of the nanny account",
- *     required=true,
- * @SWG\Schema(
- * @SWG\Property(
- *     property="lastname",
- *     type="string",
- *     default="Sparesotto"
- *   ),
- * @SWG\Property(
- *     property="firstname",
- *     type="string",
- *     default="Anais"
- *   ),
- * @SWG\Property(
- *     property="birthday",
- *     type="string",
- *     default="1991-04-25"
- *   ),
- * @SWG\Property(
- *     property="phoneNumber",
- *     type="string",
- *     default="0671259957"
- *   ),
- * @SWG\Property(
- *     property="adresse",
- *     type="string",
- *     default="10 rue emile Combes"
- *   ),
- * @SWG\Property(
- *     property="postalCode",
- *     type="string",
- *     default="83149"
- *   ),
- * @SWG\Property(
- *     property="city",
- *     type="string",
- *     default="Bras"
- *   ),
- * @SWG\Property(
- *     property="function",
- *     type="string",
- *     default="Assmat"
- *   ),
- * @SWG\Property(
- *     property="email",
- *     type="string",
- *     default="a.sparesotto@icloud.com"
- *   ),
- * @SWG\Property(
- *     property="password",
- *     type="string",
- *     default="1234"
- *   ),
- * @SWG\Response(
- *     response=201,
- *     description="create",
- *   ),
- * @SWG\Response(response=400,                    description=""),
- * @SWG\Response(response=404,                    description="Not found"),
- * )
- * )
+ * @SWG\Post(
+ *     path="/attache-nounou/nanny/create",
+ *     tags={"Nanny"},
+ *     summary="Create account nanny",
+ *     description="",
+ *     operationId="create_nanny",
+ *     produces={"application/json"},
+ *     @SWG\Parameter(
+ *         name="body",
+ *         in="body",
+ *         description="creation of the nanny account",
+ *         required=true,
+ *         @SWG\Schema(
+ *             @SWG\Property(property="lastname",type="string",example="Sparesotto"),
+ *             @SWG\Property(property="firstname",type="string",example="Anais"),
+ *             @SWG\Property(property="birthday",type="string",example="1991-04-25"),
+ *             @SWG\Property(property="phoneNumber",type="string",example="0671259957"),
+ *             @SWG\Property(property="adresse",type="string",example="10 rue emile Combes"),
+ *             @SWG\Property(property="postalCode",type="string",example="83149"),
+ *             @SWG\Property(property="city",type="string",example="Bras"),
+ *             @SWG\Property(property="function",type="string",example="Assmat"),
+ *             @SWG\Property(property="email",type="string",example="a.sparesotto@icloud.com"),
+ *             @SWG\Property(property="password",type="string",example="1234"),
+ *         )
+ *     ),
+ *     @SWG\Response(response=200,description="OK"),
  * )
  */
 /**

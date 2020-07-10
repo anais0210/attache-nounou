@@ -6,6 +6,7 @@ use App\BoundedContext\Nanny\Domain\Model;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Faker;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class NannyFixtures
@@ -15,7 +16,21 @@ use Ramsey\Uuid\Uuid;
 class NannyFixtures extends Fixture
 {
     /**
-     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @var UserPasswordEncoderInterface
+     */
+    private $passwordEncoder;
+
+    /**
+     * NannyFixtures constructor.
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     */
+     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+     {
+         $this->passwordEncoder = $passwordEncoder;
+     }
+
+    /**
+     * @param \Doctrine\Persistence\ObjectManager $manager
      */
     public function load(\Doctrine\Persistence\ObjectManager $manager): void
     {
@@ -45,7 +60,7 @@ class NannyFixtures extends Fixture
             $nanny->setPhoneNumber($faker->phoneNumber);
             $nanny->setFunction($faker->jobTitle);
             $nanny->setEmail($faker->email);
-            $nanny->setPassword($faker->password);
+            $nanny->setPassword($this->passwordEncoder->encodePassword($nanny, $faker->password));
             $manager->persist($nanny);
             $nanny->setDateRecording($faker->dateTime($max = 'now', $timezone = null));
         }

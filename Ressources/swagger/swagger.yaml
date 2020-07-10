@@ -45,48 +45,53 @@
                             "properties": {
                                 "lastname": {
                                     "type": "string",
-                                    "default": "Sparesotto"
+                                    "example": "Sparesotto"
                                 },
                                 "firstname": {
                                     "type": "string",
-                                    "default": "Anais"
+                                    "example": "Anais"
                                 },
                                 "birthday": {
                                     "type": "string",
-                                    "default": "1991-04-25"
+                                    "example": "1991-04-25"
                                 },
                                 "phoneNumber": {
                                     "type": "string",
-                                    "default": "0671259957"
+                                    "example": "0671259957"
                                 },
                                 "adresse": {
                                     "type": "string",
-                                    "default": "10 rue emile Combes"
+                                    "example": "10 rue emile Combes"
                                 },
                                 "postalCode": {
                                     "type": "string",
-                                    "default": "83149"
+                                    "example": "83149"
                                 },
                                 "city": {
                                     "type": "string",
-                                    "default": "Bras"
+                                    "example": "Bras"
                                 },
                                 "function": {
                                     "type": "string",
-                                    "default": "Assmat"
+                                    "example": "Assmat"
                                 },
                                 "email": {
                                     "type": "string",
-                                    "default": "a.sparesotto@icloud.com"
+                                    "example": "a.sparesotto@icloud.com"
                                 },
                                 "password": {
                                     "type": "string",
-                                    "default": "1234"
+                                    "example": "1234"
                                 }
                             }
                         }
                     }
-                ]
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
             }
         }
     },

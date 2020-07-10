@@ -6,6 +6,9 @@ use App\BoundedContext\Nanny\App\Command\NannyCreateCommand;
 use App\BoundedContext\Nanny\Domain\Model\Nanny;
 use App\BoundedContext\Nanny\Domain\RepositoryInterface\NannyRepositoryInterface;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 
 /**
  * Class NannyCreateCommandHandler
@@ -19,9 +22,20 @@ class NannyCreateCommandHandler
      */
     private $repository;
 
-    public function __construct(NannyRepositoryInterface $nannyRepository)
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $passwordEncoder;
+
+    /**
+     * NannyCreateCommandHandler constructor.
+     * @param NannyRepositoryInterface $nannyRepository
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     */
+    public function __construct(NannyRepositoryInterface $nannyRepository, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->repository = $nannyRepository;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
@@ -41,7 +55,7 @@ class NannyCreateCommandHandler
             $command->getPhoneNumber('phoneNumber') ? $command->getPhoneNumber('phoneNumber'):null,
             $command->getFunction('function') ? $command->getFunction('function'):null,
             $command->getEmail('email'),
-            $command->getPassword('password'),
+            $this->passwordEncoder->encodePassword($command->getPassword('password'), null),
             $command->getDateRecording('dateRecording'),
         );
 

@@ -10,6 +10,7 @@ use Symfony\Component\Messenger\Stamp\HandledStamp as HandledStampAlias;
 
 /**
  * Class NannyShowProfileController
+ *
  * @author Sparesotto Anaïs <a.sparesotto@icloud.com>
  */
 class NannyShowProfileController extends AbstractController
